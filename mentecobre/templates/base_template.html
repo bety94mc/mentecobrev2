@@ -1,0 +1,62 @@
+
+{% load static %}
+{# Cargamos la librería #}
+{% load bootstrap4 %}
+
+
+
+{# CSS Bootstrap #}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
+
+{% block extrajs %}
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.11.3/datatables.min.css"/>
+
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.11.3/datatables.min.js"></script>
+
+
+
+
+
+{% endblock %}
+
+
+<!doctype html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Sira"> 
+    <title>Sirayastein </title>
+	<link rel="stylesheet" href="/static/css/mentecobre/styles.css" />
+	<link rel="stylesheet" href="/static/css/mentecobre/datatable-styles.css" />
+ 
+  </head>
+  
+<body class="m-auto bg-cover" style="background:url(/static/img/Sasori-wallpaper.jpg); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+
+<div class="pagina">
+
+{% include "topbar_part.html" %}
+
+{% block content %}{% endblock %}
+
+
+<!-- Footer -->
+{% include "footer_part.html" %}
+
+</div>
+</body>
+<script src = "/static/js/funcion_ajax.js"> </script>
+	
+	
+	
+</html>

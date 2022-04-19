@@ -1,0 +1,63 @@
+{% extends "base_template.html" %}
+
+{% block content %}
+
+
+
+
+<div id="content-wrapper" class="d-flex flex-column">
+	<div class="container-fluid">
+
+		<!-- Page Heading -->
+		<div>
+                       <center> <h1 class="text-WHITE">Glosario</h1> </center>
+
+        </div>
+		
+		<form id="glosario-search-form" class='form-inline'>
+			<input id="q" name="q" type="text" class="input-sm form-control" placeholder="Search...">
+			<input type="Submit" value="Search" type="button" class="btn btn-primary">
+		</form>
+
+
+
+	</div>
+
+		<table id="dataTable" class="table table-bordered w-50 text-center">				
+					<thead>
+										<tr>
+											<th scope="col">Inglés</th>
+											<th scope="col">Español</th>
+											<th scope="col">Universo</th>
+										</tr>
+										</thead>
+						<tbody>
+										{%for object in object_list %}
+											<tr>
+											<td>{{object.wordEn}}</td>
+											<td>{{object.wordEs}}</td>
+											<td>{{object.universo}}</td>
+											
+
+											</tr>
+										{%endfor%}
+						</tbody>
+		</table>
+
+</div>
+{% endblock %}
+
+<script type='text/javascript'>
+
+
+		
+$('#glosario-search-form').submit(function(e){
+	e.preventDefault();
+	var serializedData = $(this).serialize();
+	console.log(serializedData)
+	window.location.href = "?"+serializedData;
+});
+
+
+</script>
+<script src = "/static/js/funcion_ajax.js"> </script>	

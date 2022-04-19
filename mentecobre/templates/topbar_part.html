@@ -1,0 +1,54 @@
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand topbar mb-4 static-top " style="background-color:#fe9601">
+				
+					<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+						<div class="container">
+							<a class="navbar-brand" href="{%url 'glosario' %}"> 
+                        <!--Insert the file name of your brand image below after the 'img'-->
+								<img class="img-responsive" src="/static/img/cosmerelogo.jpg" width="40" height="40">
+							</a>
+							<div id= "navbar1" class="collapse navbar-collapse navbar-right">
+								<ul class="navbar-nav navbar-right">
+
+									<li class="nav-item">
+										<a id="glosariolink" class="nav-link text-white" href={%url 'glosario' %}>Glosario</a>
+									</li>
+									
+									<li class="nav-item">
+										<a class="nav-link text-white" href="{% url 'admin:index' %}">Acceso a Administración</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</nav>
+                    <!-- Topbar Navbar -->
+						<ul class="navbar-nav ml-auto">
+
+                        <!-- Nav Item - Messages -->
+						<li class="nav-item dropdown no-arrow">
+							<a class="nav-link text-white"> Bienvenid@</a>
+						</li>
+                        <!-- Nav Item - User Information -->
+                        <div class="nav-item dropdown show">
+                            <!-- Dropdown - User Information -->
+							
+							 <a class="nav-link dropdown-toggle text-white" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% firstof user.get_full_name user.get_username %}</a>
+													
+							<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+								<a class="nav-link dropdown-item text-white" href="/admin/password_change/">
+										<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+										Cambiar Contraseña
+								</a>
+								
+								<a class="nav-link dropdown-item text-white" href="/accounts/logout">
+										<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+										Desconectar
+								</a>
+							</div>
+                        </div>
+
+                    </ul>
+
+                </nav>
+
+                <!-- End of Topbar -->

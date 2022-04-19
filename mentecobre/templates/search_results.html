@@ -1,0 +1,9 @@
+<h1>Search Results</h1>
+
+<ul>
+  {% for item in object_list %}
+    <li>
+      {{ item.wordEn }}, {{ item.wordEs }}
+    </li>
+  {% endfor %}
+</ul>
