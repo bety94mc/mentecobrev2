@@ -27,7 +27,7 @@ with open(BASE_DIR + '/etc/secret_key.txt') as f:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['heroku.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
