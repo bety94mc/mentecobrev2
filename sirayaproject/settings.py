@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'sirayaproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {'default': dj_database_url.config(default=get_env_variable('DATABASE_URL')), conn_max_age=600}
+DATABASES = {'default': dj_database_url.config(default=get_env_variable('DATABASE_URL'))}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
