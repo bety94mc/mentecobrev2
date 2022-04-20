@@ -82,17 +82,7 @@ WSGI_APPLICATION = 'sirayaproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd7ejf3nknhrtuk',
-        'USER': 'kuarxjhsbxinxy',
-        'PASSWORD': '7e83cb94f68155850da05ed935fa22c72d953aa20dd6a3d212de70e114cb7f1f',
-        'HOST': 'ec2-99-80-170-190.eu-west-1.compute.amazonaws.com',
-        'PORT': '5432',
-    }
-}
-
+DATABASES = {'default': dj_database_url.config(default=get_env_variable('DATABASE_URL')), conn_max_age=600}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
