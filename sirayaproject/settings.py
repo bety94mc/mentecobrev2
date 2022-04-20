@@ -85,10 +85,10 @@ WSGI_APPLICATION = 'sirayaproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd31m1fs8ehro7r',
-        'USER': 'dpkfxnumahtnla',
-        'PASSWORD': 'bdec817d4d3749d38a97293b4ba433ae340901d12f2ed8e8cc8247bd57946459',
-        'HOST': 'ec2-176-34-211-0.eu-west-1.compute.amazonaws.com',
+        'NAME': 'd7ejf3nknhrtuk',
+        'USER': 'kuarxjhsbxinxy',
+        'PASSWORD': '7e83cb94f68155850da05ed935fa22c72d953aa20dd6a3d212de70e114cb7f1f',
+        'HOST': 'ec2-99-80-170-190.eu-west-1.compute.amazonaws.com',
         'PORT': '5432',
     }
 }
