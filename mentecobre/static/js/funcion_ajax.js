@@ -24,7 +24,9 @@
  
 
 $(document).ready(function() {
-	$('#dataTable').DataTable();  
+	$('#dataTable').DataTable( {
+	"searching":false
+	});  
   });
  
 function asignar_articulo_traducción(user, id){
