@@ -42,6 +42,8 @@ class Glosario(models.Model):
     wordEn = models.CharField(max_length=200)
     wordEs = models.CharField(max_length=200,null=True, blank=True)
     universo = MultiSelectField(max_length=20,choices=universoOpciones, null=True, blank=True)
+    urlEn = models.URLField(max_length=2000,null=True, blank=True)
+    urlEs = models.URLField(max_length=2000,null=True, blank=True)
     
     def __str__(self):
         return str(self.id)
