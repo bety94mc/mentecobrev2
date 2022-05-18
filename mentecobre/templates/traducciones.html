@@ -1,0 +1,89 @@
+{% extends "base_template.html" %}
+
+{% block content %}
+
+
+
+
+<div id="content-wrapper" class="d-flex flex-column">
+	<div class="container-fluid">
+
+		<!-- Page Heading -->
+		<div>
+                       <center> <h1 class="text-WHITE">Traducción</h1> </center>
+
+        </div>
+		
+		<div class="card-group">
+			<div class ="card">
+			<div class ="card-header">
+			<a>Hola, {{usuario}} El artículo en el que estás trabajando es</a>
+			</div>
+			<div class ="card-body">
+			{% if articulo %}
+				<div class="div-table">
+				{% for articulo_item in articulo %}
+				<div class="form-tr">
+				
+				<span class="span-td-borde"><a href={{articulo_item.urlEn}}>{{articulo_item.tituloEn}}</a></span> 
+				<span class="span-td-borde"><a href={{articulo_item.urlEs}}>{{articulo_item.tituloEs}}</a></span>
+				<span class="span-td-borde">{{articulo_item.universo}}</span>
+				</div>
+				 <form method="POST" id="form-traducido" class="form-tr">
+						{% csrf_token %}
+						<span class="span-td-no-borde">
+						<select class="form-select" id="formtraducidoselect"> 
+							<option selected disabled>Traducido?</option>
+							<option value="Y">Sí</option>
+							<option value="F">Falta Cita</option>
+						</select>
+						</span>
+						<span class="span-td-no-borde">
+						<textarea name="notas" id="formtraducidonotas" placeholder="¿Algo que comentar?"></textarea>
+						</span>
+						<span class="span-td-no-borde">
+					<button onclick='marcar_traducido($("#formtraducidoselect").val(), "{{articulo_item.id}}", $("#formtraducidonotas").val())' class="btn bg-success btn-sm text-WHITE">Marcar como traducido</button>
+					</span>
+				</form>
+
+				{% endfor %}
+
+				</div>
+
+
+			{% else %}
+				<p>Oh vaya, no parece que estés trabajando ahora en nada</p>
+			{% endif %}
+			</div>
+			</div>
+			<div class ="card">
+			<div class ="card-header">
+			<a> El siguiente artículo disponible:</a>
+			</div>
+			<div class ="card-body">
+			<table class="table table-hover">
+				<tbody>
+				{% for siguiente_articulo_item in siguiente_articulo %}
+				<tr>
+				<td><a href={{siguiente_articulo_item.urlEn}}>{{siguiente_articulo_item.tituloEn}}</a></td>
+				<td><a href={{siguiente_articulo_item.urlEs}}>{{siguiente_articulo_item.tituloEs}}</a></td>
+				<td>{{siguiente_articulo_item.universo}}</td>
+				<td>
+				<form method="POST" id="form">
+					{% csrf_token %}
+					<button onclick='asignar_articulo_traducción("{{siguiente_articulo_item.id}}")' class="btn bg-success text-WHITE">Asignar</button>
+				</form>
+				</td>
+				</tr>
+			{% endfor %}
+				</tbody>
+			</table>
+			</div>
+			</div>			
+		</div>
+		
+</div>
+{% endblock %}
+
+
+<script src = "/static/js/funcion_ajax.js"> </script>	

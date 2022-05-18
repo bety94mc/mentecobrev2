@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Glosario, Usuario
+from .models import Glosario, Usuario, Articulos
 from .forms import UsuarioActualizarForm, RegistroForm
 
 from import_export.admin import ImportExportModelAdmin, ExportActionMixin
@@ -49,6 +49,12 @@ class GlosarioAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     search_fields = ('wordEn','wordEs')
     
     resource_class=GlosarioResource
+    
+@admin.register(Articulos)
+class ArticulosAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    list_display =('id','tituloEn','tituloEs','traductor', 'traducido','revisor','universo')
+    search_fields = ('tituloEn','tituloEs','traductor', 'traducido','revisor','universo')
+    list_filter = (('traductor', DropdownFilter),('traducido',DropdownFilter),('revisor',DropdownFilter))
 
 admin.site.site_header= "Nave Nodriza"
 admin.site.site_title= "Mandos Nave Nodriza"
