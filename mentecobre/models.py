@@ -12,7 +12,7 @@ class Usuario(AbstractUser):
     tipoRango = (('Ad','Admin'),('Col','Colaborador'),)
     
     rango = models.CharField(max_length=3, choices=tipoRango, null=True, blank=True)
-    universo = MultiSelectField(max_length=20,choices=universoOpciones, null=True, blank=True)
+    universo = MultiSelectField(choices=universoOpciones, null=True, blank=True)
     
     
     def __str__(self):
