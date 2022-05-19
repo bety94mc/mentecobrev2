@@ -53,8 +53,8 @@ class GlosarioAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 @admin.register(Articulos)
 class ArticulosAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display =('id','tituloEn','tituloEs','traductor', 'traducido','revisor','universo')
-    search_fields = ('tituloEn','tituloEs','traductor', 'traducido','revisor','universo')
-    list_filter = (('traductor', DropdownFilter),('traducido',DropdownFilter),('revisor',DropdownFilter))
+    search_fields = ('tituloEn','tituloEs','universo')
+    list_filter = (('traductor', RelatedDropdownFilter),('traducido',ChoiceDropdownFilter),('revisor',RelatedDropdownFilter), ('universo',ChoiceDropdownFilter),)
 
 admin.site.site_header= "Nave Nodriza"
 admin.site.site_title= "Mandos Nave Nodriza"

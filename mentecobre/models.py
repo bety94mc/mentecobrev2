@@ -59,10 +59,10 @@ class Articulos(models.Model):
     tipoOpciones = (('CU','Cultura'),('EVT','Eventos y eras'),('FDV','Formas de vida'),('LIB','Libros'),
                     ('LOC','Localizaciones'),('MG','Magia'),('PJ','Personajes'),('OBJ','Objetos y materiales'),('ORG','Organización'),
                     ('FAM','Familia'),('MUL','multimedia'),('WIKI','wiki/otros'),('DIS','Disambiguación'),('RD','Redirección'),('SUB','Subpágina'),)
-    prioridadOpciones = (('1','Alta'),('2','Media'),('3','Baja'),('4','TBD'),)
+    prioridadOpciones = (('1','Alta'),('2','Media'),('3','Baja'),('4','TBD'),('5','Siraya'),)
     citaOpciones = (('Y','Sí'),('N','No'),)
     traducidoOpciones = (('Y','Sí'),('F','Falta Cita'), ('O','On Hold'),)
-    revisadoOpciones = (('Y','Sí'),('P','En progreso'),)
+    revisadoOpciones = (('Y','Sí'),)
     universoOpciones = (('C','Cosmere'),('M','Mistborn'),('S', 'Stormlight'),('A','Aliento'),('E','Elantris'),('AB','Arena Blanca'),('B','Brandon'),('FU','Fuera Universo'),
                         ('OH','Otras Historias'),('R','Rithmatista'),('RT','Rueda del Tiempo'),('CT','Citoverso'),('RK','Reckoners'),('SS','Sombras por Silencio'),('AL','Alcatraz'),
                         ('L','Legion'),('SO','Sexto del Ocaso'),('AE','Alma del Emperador'))
@@ -85,7 +85,7 @@ class Articulos(models.Model):
     fechaasignadorevisor = models.DateField(null=True, blank=True)
     fecharevisado = models.DateField(null=True, blank=True)
     notas = models.TextField(null=True, blank=True)
-    universo = MultiSelectField(max_length=3, choices=universoOpciones, null=True, blank=True)
+    universo = MultiSelectField(choices=universoOpciones, null=True, blank=True)
     urldrive = models.URLField(null=True, blank=True)
     urlEn = models.URLField(null=True, blank=True)
     urlEs = models.URLField(null=True, blank=True)

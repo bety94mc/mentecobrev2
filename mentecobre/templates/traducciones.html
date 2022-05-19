@@ -28,6 +28,9 @@
 				<span class="span-td-borde"><a href={{articulo_item.urlEn}}>{{articulo_item.tituloEn}}</a></span> 
 				<span class="span-td-borde"><a href={{articulo_item.urlEs}}>{{articulo_item.tituloEs}}</a></span>
 				<span class="span-td-borde">{{articulo_item.universo}}</span>
+				{% if articulo_item.urldrive is not null %}
+				<span class="span-td-borde"><a href={{articulo_item.urldrive}}><button class="btn btn-sm btn-info">Archivo Drive</button></a></span>
+				{% endif %}
 				</div>
 				 <form method="POST" id="form-traducido" class="form-tr">
 						{% csrf_token %}
@@ -42,7 +45,7 @@
 						<textarea name="notas" id="formtraducidonotas" placeholder="¿Algo que comentar?"></textarea>
 						</span>
 						<span class="span-td-no-borde">
-					<button onclick='marcar_traducido($("#formtraducidoselect").val(), "{{articulo_item.id}}", $("#formtraducidonotas").val())' class="btn bg-success btn-sm text-WHITE">Marcar como traducido</button>
+					<button onclick='marcar_traducido($("#formtraducidoselect").val(), "{{articulo_item.id}}", $("#formtraducidonotas").val())' class="btn btn-success btn-sm text-WHITE">Marcar como traducido</button>
 					</span>
 				</form>
 
