@@ -146,3 +146,5 @@ AUTH_USER_MODEL = 'mentecobre.Usuario'
 SECURE_SSL_REDIRECT = True
 
 SESSION_COOKIE_SECURE = True
+
+LOGIN_REDIRECT_URL = '/mentecobre/' 
