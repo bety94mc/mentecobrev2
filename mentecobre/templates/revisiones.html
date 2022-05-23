@@ -25,8 +25,8 @@
 				{% for articulo_item in articulo %}
 				<div class="form-tr">
 				
-				<span class="span-td-borde"><a href={{articulo_item.urlEn}}>{{articulo_item.tituloEn}}</a></span> 
-				<span class="span-td-borde"><a href={{articulo_item.urlEs}}>{{articulo_item.tituloEs}}</a></span>
+				<span class="span-td-borde"><a href={{articulo_item.urlEn}} target="_blank" rel="noopener noreferrer">{{articulo_item.tituloEn}}</a></span> 
+				<span class="span-td-borde"><a href={{articulo_item.urlEs}} target="_blank" rel="noopener noreferrer">{{articulo_item.tituloEs}}</a></span>
 				<span class="span-td-borde">{{articulo_item.universo}}</span>
 				<span class="span-td-borde">{{articulo_item.traductor}}</span>
 				</div>
@@ -53,7 +53,6 @@
 
 				</div>
 
-
 			{% else %}
 				<p>Oh vaya, no parece que estés trabajando ahora en nada</p>
 			{% endif %}
@@ -69,8 +68,8 @@
 				<tbody>
 				{% for siguiente_articulo_item in siguiente_articulo %}
 				<tr>
-				<td>{{siguiente_articulo_item.tituloEn}}</td>
-				<td>{{siguiente_articulo_item.tituloEs}}</td>
+				<td><a href={{siguiente_articulo_item.urlEn}} target="_blank" rel="noopener noreferrer">{{siguiente_articulo_item.tituloEn}}</a></td>
+				<td><a href={{siguiente_articulo_item.urlEs}} target="_blank" rel="noopener noreferrer">{{siguiente_articulo_item.tituloEs}}</a></td>
 				<td>{{siguiente_articulo_item.universo}}</td>
 				<td>
 				<form method="POST" id="form">

@@ -25,11 +25,11 @@
 				{% for articulo_item in articulo %}
 				<div class="form-tr">
 				
-				<span class="span-td-borde"><a href={{articulo_item.urlEn}}>{{articulo_item.tituloEn}}</a></span> 
-				<span class="span-td-borde"><a href={{articulo_item.urlEs}}>{{articulo_item.tituloEs}}</a></span>
+				<span class="span-td-borde"><a href={{articulo_item.urlEn}} target="_blank" rel="noopener noreferrer">{{articulo_item.tituloEn}}</a></span> 
+				<span class="span-td-borde"><a href={{articulo_item.urlEs}} target="_blank" rel="noopener noreferrer">{{articulo_item.tituloEs}}</a></span>
 				<span class="span-td-borde">{{articulo_item.universo}}</span>
 				{% if articulo_item.urldrive is not null %}
-				<span class="span-td-borde"><a href={{articulo_item.urldrive}}><button class="btn btn-sm btn-info">Archivo Drive</button></a></span>
+				<span class="span-td-borde"><a href={{articulo_item.urldrive}} target="_blank" rel="noopener noreferrer"><button class="btn btn-sm btn-info">Archivo Drive</button></a></span>
 				{% endif %}
 				</div>
 				 <form method="POST" id="form-traducido" class="form-tr">
@@ -68,8 +68,8 @@
 				<tbody>
 				{% for siguiente_articulo_item in siguiente_articulo %}
 				<tr>
-				<td><a href={{siguiente_articulo_item.urlEn}}>{{siguiente_articulo_item.tituloEn}}</a></td>
-				<td><a href={{siguiente_articulo_item.urlEs}}>{{siguiente_articulo_item.tituloEs}}</a></td>
+				<td><a href={{siguiente_articulo_item.urlEn}} target="_blank" rel="noopener noreferrer">{{siguiente_articulo_item.tituloEn}}</a></td>
+				<td><a href={{siguiente_articulo_item.urlEs}} target="_blank" rel="noopener noreferrer">{{siguiente_articulo_item.tituloEs}}</a></td>
 				<td>{{siguiente_articulo_item.universo}}</td>
 				<td>
 				<form method="POST" id="form">
