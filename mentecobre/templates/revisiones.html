@@ -27,7 +27,7 @@
 				
 				<span class="span-td-borde"><a href={{articulo_item.urlEn}} target="_blank" rel="noopener noreferrer">{{articulo_item.tituloEn}}</a></span> 
 				<span class="span-td-borde"><a href={{articulo_item.urlEs}} target="_blank" rel="noopener noreferrer">{{articulo_item.tituloEs}}</a></span>
-				<span class="span-td-borde">{{articulo_item.universo}}</span>
+				<span class="span-td-borde">{{articulo_item.get_universo_display}}</span>
 				<span class="span-td-borde">{{articulo_item.traductor}}</span>
 				</div>
 				<div class="form-tr">
@@ -70,7 +70,7 @@
 				<tr>
 				<td><a href={{siguiente_articulo_item.urlEn}} target="_blank" rel="noopener noreferrer">{{siguiente_articulo_item.tituloEn}}</a></td>
 				<td><a href={{siguiente_articulo_item.urlEs}} target="_blank" rel="noopener noreferrer">{{siguiente_articulo_item.tituloEs}}</a></td>
-				<td>{{siguiente_articulo_item.universo}}</td>
+				<td>{{siguiente_articulo_item.get_universo_display}}</td>
 				<td>
 				<form method="POST" id="form">
 					{% csrf_token %}

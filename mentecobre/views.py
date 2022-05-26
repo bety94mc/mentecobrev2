@@ -58,9 +58,10 @@ def traducciones(request):
     articulo_noasignado = []
     for universo_item in universo:
 
-        articulo = Articulos.objects.filter(universo=universo_item).filter(traducido__isnull=True).filter(traductor__isnull=True).exclude(tipo='RD').order_by('prioridad').values().first()
+        articulo = Articulos.objects.filter(universo=universo_item).filter(traducido__isnull=True).filter(traductor__isnull=True).exclude(tipo='RD').order_by('prioridad','tituloEn').first()
 
         if articulo != None:
+            print(articulo)
             articulo_noasignado.append(articulo)
     
 
@@ -116,7 +117,7 @@ def revisiones(request):
     articulo_noasignado = []
     for universo_item in universo:
 
-        articulo = Articulos.objects.filter(universo=universo_item).filter(traducido__isnull=False).filter(revisado__isnull=True).filter(revisor__isnull=True).order_by('prioridad').values().first()
+        articulo = Articulos.objects.filter(universo=universo_item).filter(traducido__isnull=False).filter(revisado__isnull=True).filter(revisor__isnull=True).order_by('prioridad','tituloEn').first()
 
         if articulo != None:
             articulo_noasignado.append(articulo)

@@ -41,14 +41,14 @@ class Glosario(models.Model):
     
     wordEn = models.CharField(max_length=200)
     wordEs = models.CharField(max_length=200,null=True, blank=True)
-    universo = MultiSelectField(max_length=20,choices=universoOpciones, null=True, blank=True)
+    universo = models.CharField( max_length=4, choices=universoOpciones, null=True, blank=True)
     urlEn = models.URLField(max_length=2000,null=True, blank=True)
     urlEs = models.URLField(max_length=2000,null=True, blank=True)
     
     def __str__(self):
-        return str(self.id)
+        return str(self.wordEn)
     def get_absolute_url(self):
-        return reverse('id', args=[str(self.id)])
+        return reverse('wordEn', args=[str(self.id)])
 
 
 class Articulos(models.Model):
@@ -85,12 +85,12 @@ class Articulos(models.Model):
     fechaasignadorevisor = models.DateField(null=True, blank=True)
     fecharevisado = models.DateField(null=True, blank=True)
     notas = models.TextField(null=True, blank=True)
-    universo = MultiSelectField(choices=universoOpciones, null=True, blank=True)
+    universo = models.CharField( max_length=4, choices=universoOpciones, null=True, blank=True)
     urldrive = models.URLField(null=True, blank=True)
     urlEn = models.URLField(null=True, blank=True)
     urlEs = models.URLField(null=True, blank=True)
     fechacambiosEn = models.DateField(null=True, blank=True)
     def __str__(self):
-        return str(self.id)
+        return str(self.tituloEs)
     def get_absolute_url(self):
-        return reverse('id', args=[str(self.id)])
+        return reverse('tituloEs', args=[str(self.id)])
