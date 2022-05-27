@@ -82,7 +82,6 @@ pyinstaller==4.3
 pyinstaller-hooks-contrib==2021.1
 pyparsing==2.4.7
 PyPDF2==1.26.0
-pypiwin32==223
 python-bidi==0.4.2
 python-dateutil==2.8.1
 python-pptx==0.6.19
