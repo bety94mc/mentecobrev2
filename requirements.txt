@@ -15,7 +15,6 @@ comtypes==1.1.10
 cssutils==2.3.0
 currency-symbols==2.0.0
 decorator==5.1.0
-decouple==0.0.7
 defusedxml==0.7.1
 diff-match-patch==20200713
 distlib==0.3.3
@@ -82,11 +81,15 @@ pyinstaller==4.3
 pyinstaller-hooks-contrib==2021.1
 pyparsing==2.4.7
 PyPDF2==1.26.0
+pypiwin32==223
 python-bidi==0.4.2
 python-dateutil==2.8.1
+python-decouple==3.6
 python-pptx==0.6.19
 pyttsx3==2.90
 pytz==2021.3
+pywin32==301
+pywin32-ctypes==0.2.0
 PyYAML==6.0
 reportlab==3.6.3
 requests==2.25.1
