@@ -10,6 +10,7 @@ django-bootstrap4==22.1
 django-import-export==2.8.0
 django-multiselectfield==0.1.12
 et-xmlfile==1.1.0
+gunicorn==20.1.0
 MarkupPy==1.14
 mysqlclient==2.1.0
 odfpy==1.4.1
