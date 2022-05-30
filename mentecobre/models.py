@@ -6,13 +6,13 @@ from multiselectfield import MultiSelectField
 # Create your models here.
 
 class Usuario(AbstractUser):
-    universoOpciones = (('A','Aliento de los diosos'), ('AB', 'Arena Blanca'), ('AE', 'El alma del emperador'),('AL','Alcatraz'),('C','Cosmere'),('CT','Citoverso'),('E','Elantris'),
+    universoOpciones = (('A','Aliento de los dioses'), ('AB', 'Arena Blanca'), ('AE', 'El alma del emperador'),('AL','Alcatraz'),('C','Cosmere'),('CT','Citoverso'),('E','Elantris'),
                         ('FU','Fuera del universo'),('L','Legión'),('M','Nacidos de la bruma'),('OH','Otras Historias'),('R','Rithmatista'),('RK','Reckoners'),('RT','Rueda del Tiempo'),('S','Archivo de las tormentas'),
                         ('SO','Sexto del Ocaso'),('SS','Sombras por silencio'),)
     tipoRango = (('Ad','Admin'),('Col','Colaborador'),)
     
     rango = models.CharField(max_length=3, choices=tipoRango, null=True, blank=True)
-    universo = MultiSelectField(choices=universoOpciones, null=True, blank=True)
+    universo = MultiSelectField(choices=universoOpciones, max_length=100, null=True, blank=True)
     
     
     def __str__(self):
@@ -35,7 +35,7 @@ class Glosario(models.Model):
     """
     Objeto tipo Modelo. Glosario de Palabras Inglés-Español. Si tienen página, se indica.
     """
-    universoOpciones = (('A','Aliento de los diosos'), ('AB', 'Arena Blanca'), ('AE', 'El alma del emperador'),('AL','Alcatraz'),('C','Cosmere'),('CT','Citoverso'),('E','Elantris'),
+    universoOpciones = (('A','Aliento de los dioses'), ('AB', 'Arena Blanca'), ('AE', 'El alma del emperador'),('AL','Alcatraz'),('C','Cosmere'),('CT','Citoverso'),('E','Elantris'),
                         ('FU','Fuera del universo'),('L','Legión'),('M','Nacidos de la bruma'),('OH','Otras Historias'),('R','Rithmatista'),('RK','Reckoners'),('RT','Rueda del Tiempo'),('S','Archivo de las tormentas'),
                         ('SO','Sexto del Ocaso'),('SS','Sombras por silencio'),)
     

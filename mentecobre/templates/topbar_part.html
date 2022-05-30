@@ -20,7 +20,7 @@
 									<li class="nav-item">
 										<a class="nav-link text-white" href="{% url 'admin:index' %}">Acceso a Administración</a>
 									</li>
-									{% if user.get_full_name is not null %}
+									{% if user.get_username is not null %}
 									<li class="nav-item">
 										<a id="traduccionlink" class="nav-link text-white" href={% url 'traducciones' %}>Estado Traducción</a>
 									</li>
@@ -31,6 +31,9 @@
 										{% endif %}
 
 									{% endif %}
+									<li class="nav-item">
+										<a id="ayudalink" class="nav-link text-white" href="https://sites.google.com/view/ayuda-traduccion-coppermind/inicio"target="_blank" rel="noopener noreferrer">Ayuda</a>
+									</li>
 								</ul>
 							
 						
