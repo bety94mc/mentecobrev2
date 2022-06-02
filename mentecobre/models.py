@@ -90,6 +90,7 @@ class Articulos(models.Model):
     urlEn = models.URLField(null=True, blank=True)
     urlEs = models.URLField(null=True, blank=True)
     fechacambiosEn = models.DateField(null=True, blank=True)
+    enlacecopperen = models.BooleanField(default=False)
     def __str__(self):
         return str(self.tituloEs)
     def get_absolute_url(self):
