@@ -29,6 +29,18 @@
 						{% endfor %}
 						</tbody>
 				</table>
+								
+				<div class="card" style="width: 60%">
+					<div class = "card-body" >
+
+						Los siguientes usuarios aún no tienen nada asignado:
+						<ul>
+						{% for user_saa in usuarios_saa %}
+							<li> {{user_saa.username}} </li>
+						{% endfor %}
+						</ul>
+					</div>
+				</div>
 				</center>
 
 
