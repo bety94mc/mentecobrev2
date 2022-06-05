@@ -1,5 +1,5 @@
 {% extends "base_template.html" %}
-
+ {% load usergroups %}
 {% block content %}
 
 
@@ -36,7 +36,11 @@
 						Los siguientes usuarios aún no tienen nada asignado:
 						<ul>
 						{% for user_saa in usuarios_saa %}
-							<li> {{user_saa.username}} </li>
+							{% if not user_saa|has_group:"Revisores" %}
+								<li class="list-group-item text-center"> {{user_saa.username}} </li>
+							{% endif %}
+						{% empty %}
+							Parece que todos nuestros usuarios están trabajando. ¡Bien!
 						{% endfor %}
 						</ul>
 					</div>
