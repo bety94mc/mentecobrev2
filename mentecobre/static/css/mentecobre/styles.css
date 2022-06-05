@@ -43,3 +43,10 @@ list-style: none;
     width: 100%;
 
 }
+
+.div-table2{
+	display: table;
+	 background-color: white;
+	opacity: 0.8;
+    width: 70%;
+}
