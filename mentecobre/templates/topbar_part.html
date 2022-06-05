@@ -20,13 +20,19 @@
 									<li class="nav-item">
 										<a class="nav-link text-white" href="{% url 'admin:index' %}">Acceso a Administración</a>
 									</li>
-									{% if user.get_username is not null %}
+									{% if user.is_authenticated %}
 									<li class="nav-item">
 										<a id="traduccionlink" class="nav-link text-white" href={% url 'traducciones' %}>Estado Traducción</a>
 									</li>
 										{% if request.user|has_group:"Revisores" %}
 											<li class="nav-item">
 												<a id="revisionlink" class="nav-link text-white" href={% url 'revisiones' %}>Estado Revisión</a>
+											</li>
+										{% endif %}
+										
+										{% if user.is_superuser %}
+											<li class="nav-item">
+												<a id="revisionlink" class="nav-link text-white" href={% url 'gregorio' %}>Vigilante de la Traducción</a>
 											</li>
 										{% endif %}
 
@@ -47,9 +53,9 @@
 							<a class="nav-link text-white"> Bienvenid@</a>
 						</li>
                         <!-- Nav Item - User Information -->
-                        {% if user.get_full_name is not null %}
+                        {% if user.is_authenticated %}
 							<div class="dropdown show">
-								<a class="nav-link dropdown-toggle text-white" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% firstof user.get_full_name user.get_username %}</a>
+								<a class="nav-link dropdown-toggle text-white" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ user.get_username }}</a>
 								
 								<div class="dropdown-menu " aria-labelledby="dropdownMenuLink" style="left:-150">
 									<a class="dropdown-item" href="/admin/password_change/">

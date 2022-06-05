@@ -26,8 +26,22 @@
 $(document).ready(function() {
 	$('#dataTable').DataTable( {
 	"searching":false
+	
 	});  
   });
+  
+ $(document).ready(function() {
+	$('#gregoriotable').DataTable( {
+	"paging": false,
+	"searching":false,
+	"info": false,
+
+
+	});  
+  });
+ 
+ 
+ 
  
 function asignar_articulo_traducción(id){
 	$.ajax({
@@ -62,7 +76,6 @@ function asignar_articulo_traducción(id){
 
 function marcar_traducido(traducidoselect, id, notas){
 	traducido = traducidoselect
-	console.log(traducido)
 	$.ajax({
 		url: "/mentecobre/marcartraducido",
 		method:"POST",
@@ -91,12 +104,13 @@ function marcar_traducido(traducidoselect, id, notas){
 
 
 function marcar_revisado(revisadoselect, id, revisadonotas){
-	revisado = revisadoselect
-	console.log(revisado)
+	marcado = false
+	if($('#enlacecopperen').prop('checked') == true ){ 
+		marcado = true }
 	$.ajax({
 		url: "/mentecobre/marcarrevisado",
 		method:"POST",
-		data:  {'revisado':revisadoselect, 'id':id, 'notas':revisadonotas},
+		data:  {'revisado':revisadoselect, 'id':id, 'notas':revisadonotas, 'checked':marcado},
 		dataType: "json",
 		success: function(response){
 			var dialog = bootbox.dialog({

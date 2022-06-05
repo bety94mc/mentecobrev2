@@ -41,9 +41,21 @@
 							<option value="Y">Sí</option>
 						</select>
 						</span>
-						<span class="span-td-no-borde">
+						
 						<span class="span-td-no-borde">
 						<textarea name="notas" id="formtraducidonotas" >{{articulo_item.notas}}</textarea>
+						</span>
+						<span class="span-td-no-borde">
+						
+						<div class="form-check">
+						{% if articulo_item.enlacecopperen == True %}
+						<input type="checkbox" class="form-check-input" id="enlacecopperen" checked>
+						{% else %}
+						<input type="checkbox" class="form-check-input" id="enlacecopperen">
+						{% endif %}
+						<label class="form-check-label" for="enlacecopperen">Enlazada la CopperEn a la CopperEs</label>
+						</div>
+						
 						</span>
 					<button onclick='marcar_revisado($("#formrevisadoselect").val(), "{{articulo_item.id}}", $("#formtraducidonotas").val())'  class="btn bg-success btn-sm text-WHITE">Marcar como revisado</button>
 					</span>

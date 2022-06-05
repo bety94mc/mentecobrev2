@@ -1,0 +1,39 @@
+{% extends "base_template.html" %}
+
+{% block content %}
+
+
+
+
+<div id="content-wrapper" class="d-flex flex-column">
+				<center>
+				<table class="table table-bordered stripe text-center" id="gregoriotable" width="80%" >
+						<thead>
+							<th>ID</th>
+							<th>Usuario</th>
+							<th>Universo</th>
+							<th>Artículos asignados</th>
+							<th>Artículos traducidos</th>
+							<th>Fecha último asignado</th>
+							<th>Fecha último traducido</th>
+							<th>Días pasados</th>
+							<th>Estado</th>
+						</thead>
+						<tbody>
+						{% for index, row in resumenusuarios.iterrows %}
+						<tr>
+							{% for cell in row %}
+							<td>{{cell}}</td>
+							{% endfor %}
+						</tr>
+						{% endfor %}
+						</tbody>
+				</table>
+				</center>
+
+
+</div>
+{% endblock %}
+
+
+<script src = "/static/js/funcion_ajax.js"> </script>	
