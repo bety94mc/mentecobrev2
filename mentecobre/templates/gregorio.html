@@ -9,7 +9,6 @@
 				<center>
 				<table class="table table-bordered stripe text-center" id="gregoriotable" width="80%" >
 						<thead>
-							<th>ID</th>
 							<th>Usuario</th>
 							<th>Universo</th>
 							<th>Artículos asignados</th>
@@ -18,13 +17,25 @@
 							<th>Fecha último traducido</th>
 							<th>Días pasados</th>
 							<th>Estado</th>
+							<th> Cotillear </th>
 						</thead>
 						<tbody>
 						{% for index, row in resumenusuarios.iterrows %}
 						<tr>
-							{% for cell in row %}
-							<td>{{cell}}</td>
-							{% endfor %}
+							<td> {{row.user}} </td>
+							<td> {{row.universo}} </td>
+							<td> {{row.artiasignado}}</td>
+							<td> {{row.artitraducido}} </td>
+							<td> {{row.fechaasignado}} </td>
+							<td> {{row.fechatraducido}} </td>
+							<td> {{row.diaspasados}} </td>
+							<td> {{row.estado}} </td>
+							<td>
+							<form method="GET" id="form">
+								{% csrf_token %}
+								</form>
+							<button onclick='mostrar_perfil("{{row.userid}}") ' title="Perfil" type="button" class="btn btn-primary">Perfil </button>		
+							</td>
 						</tr>
 						{% endfor %}
 						</tbody>
@@ -45,11 +56,13 @@
 						</ul>
 					</div>
 				</div>
-				</center>
+				
+				<div id="perfilusuario" class="card shadow mb-4" style="width: 80%">
 
+				</div>
+				</center>
 
 </div>
 {% endblock %}
-
 
 <script src = "/static/js/funcion_ajax.js"> </script>	

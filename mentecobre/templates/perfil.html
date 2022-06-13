@@ -1,0 +1,55 @@
+{% extends "base_template.html" %}
+
+{% block content %}
+
+
+
+<div id="content-wrapper" class="d-flex flex-column">
+	<div class="container-fluid">
+
+		<!-- Page Heading -->
+		<div>
+                       <center> <h1 class="text-WHITE">Mi Perfil</h1> </center>
+
+        </div>
+		
+<div class="card-group">
+	<div class ="card">
+		<div class ="card-header">
+		{% for usuario_item in usuario %}
+				<center> <h3> {{usuario_item.username}}</h3> <center>
+				<p> {{usuario_item.universo}} </p>
+		{% endfor %}
+		</div>
+		<div class="card-body">
+			<table class="table table-bordered table-striped">
+				<thead>
+					<th> Artículo </th>
+					<th> Estado </th>
+				</thead>
+				<tbody>			
+				{% for articulo_item in articulos %}
+				<tr> 
+					<td> {{articulo_item.tituloEs}} </td>
+					{% if articulo_item.traducido == null %}
+						<td> En curso </td>
+					{% else %}
+						<td> Traducido </td>
+					{% endif %}
+				</tr>
+					
+				{% endfor %}
+				</tbody>
+				</table>
+						
+	</div>
+</div>
+</div>
+</div>
+</div>
+
+{% endblock %}
+
+
+<script src = "/static/js/funcion_ajax.js"> </script>	
+
