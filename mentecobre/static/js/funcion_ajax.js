@@ -37,7 +37,14 @@ $(document).ready(function() {
 	"info": false,
 
 
+	});
+	$('#perfiltabla').DataTable( {
+	"searching":false,
+	"info": false,
+
+
 	});  
+
   });
  
  
@@ -194,7 +201,7 @@ function mostrar_perfil(id){
 						<input id="submit_newcause" type="Submit" value="Anotar" class='btn btn-secondary'/>
 					</form>
 					<hr>
-					<table class="table table-bordered table-striped">
+					<table id="gregorio-perfil-table" class="table table-bordered table-striped">
 						<thead>
 							<th> Artículo </th>
 							<th> Estado </th>
@@ -221,6 +228,12 @@ function mostrar_perfil(id){
 					</table>
 				</div>`
 			$("#perfilusuario").html(table)
+			$('#gregorio-perfil-table').DataTable( {
+				"searching":false,
+				"info": false,
+
+
+			});  	
 			$("#form-usernotas").submit(function(ev){
 					ev.preventDefault()
 					updateuser(this, username)
