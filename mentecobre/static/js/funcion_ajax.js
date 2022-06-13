@@ -1,4 +1,4 @@
- $.ajaxSetup({ 
+$.ajaxSetup({ 
      beforeSend: function(xhr, settings) {
          function getCookie(name) {
              var cookieValue = null;
@@ -19,18 +19,18 @@
              // Only send the token to relative URLs i.e. locally.
              xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
          }
+		  
      } 
 });
- 
+
 
 $(document).ready(function() {
 	$('#dataTable').DataTable( {
 	"searching":false
 	
 	});  
-  });
-  
- $(document).ready(function() {
+
+	$.fn.dataTable.moment( 'D-M-YYYY' );
 	$('#gregoriotable').DataTable( {
 	"paging": false,
 	"searching":false,
@@ -158,3 +158,98 @@ function asignar_articulo_revision(id){
 	});
 	
 }
+
+function mostrar_perfil(id){
+	var token = $('input[name=csrfmiddlewaretoken]').val();
+	$.ajax({
+		url: "/mentecobre/perfil",
+		method:"POST",
+		data:  {'id':id},
+		dataType: "json",
+		success: function(response){
+			console.log("BIEN")
+			var user = JSON.parse(response["usuario"]);
+			var articulos =  JSON.parse(response["articulos"]);
+			console.log(user)
+			var userfields = user[0]["fields"];
+			var username= userfields["username"];
+			var groups = userfields["groups"];
+			var grupo=""
+			if (groups == 2 )
+				grupo = "Traductor"
+			else if (groups == 1)
+				grupo = "Revisor"
+			else
+				grupo = "Traductor, Revisor"
+			var usernotas = userfields["notas"]
+			console.log(groups)
+			console.log(grupo)
+			console.log(articulos)
+			var table = `
+				<div class="card-body">
+					<h3> ${username}</h3>
+					<p> ${grupo} </p>
+					 <form method="POST" id="form-usernotas" class="form-tr">						
+						<textarea name="notes" id="usuarionotas" maxlength="1000">${usernotas}</textarea>
+						<input id="submit_newcause" type="Submit" value="Anotar" class='btn btn-secondary'/>
+					</form>
+					<hr>
+					<table class="table table-bordered table-striped">
+						<thead>
+							<th> Artículo </th>
+							<th> Estado </th>
+						</thead>
+						<tbody>`
+						for (var i = 0; i< articulos.length; i++){
+							var articulosfields = articulos[i]["fields"];
+							var articulostitle = articulosfields["tituloEs"]
+							var articulostraducido = articulosfields["traducido"]
+							if (articulostraducido == null) {
+								var estado = "En curso"
+							}
+							else {
+								var estado = "Traducido"
+							}
+							table += `
+									<tr> <td> ${articulostitle}  </td> 
+									<td> ${estado}</td>
+									</tr> `
+						
+						}
+						
+				table += `</tbdoy>
+					</table>
+				</div>`
+			$("#perfilusuario").html(table)
+			$("#form-usernotas").submit(function(ev){
+					ev.preventDefault()
+					updateuser(this, username)
+				});
+		}
+		
+	});
+	
+}
+
+ function updateuser (form, username){
+	 console.log(form)
+	 var serializedData = $(form).serialize();
+	 console.log(serializedData)
+	 var notas = form.usuarionotas.value
+	 console.log(notas)
+	 console.log(username)
+	 $.ajax({
+            type: 'POST',
+            url: "/mentecobre/updateuser",
+            data: {'notas':notas, 'username':username},
+            success: function (response) {
+			  console.log('bien')
+			  
+
+            },
+            error: function (response) {
+            }
+			});
+	
+ }
+

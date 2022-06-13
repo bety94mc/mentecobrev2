@@ -74,6 +74,7 @@ class UsuarioAdmin(ImportExportModelAdmin, UserAdmin):
     form = UsuarioActualizarForm
     add_form = RegistroForm
     list_display =('id','username','rango','universo')
+    
     fieldsets = ( (None, {'fields':('username','password','email','first_name','last_name')}),
                   ('Extra Info',{'fields':('rango','universo')}),
                   ('Permisos',{'fields':('groups','is_superuser','is_staff','is_active')}),
@@ -84,7 +85,6 @@ class UsuarioAdmin(ImportExportModelAdmin, UserAdmin):
                 'fields':('username','password1','password2')}
                 ),
    ) 
-
 
 
 @admin.register(Glosario)

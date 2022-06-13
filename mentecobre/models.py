@@ -13,6 +13,7 @@ class Usuario(AbstractUser):
     
     rango = models.CharField(max_length=3, choices=tipoRango, null=True, blank=True)
     universo = MultiSelectField(choices=universoOpciones, max_length=100, null=True, blank=True)
+    notas = models.TextField(null=True, blank=True)
     
     
     def __str__(self):
@@ -29,7 +30,6 @@ class ManejadorUsuario(UserManager):
         usuario.set_password(password)
         usuario.save(using=self._db)
         return usuario
-
 
 class Glosario(models.Model):
     """

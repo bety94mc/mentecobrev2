@@ -9,6 +9,8 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 from django.core import serializers
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_protect, csrf_exempt
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from datetime import date
@@ -174,7 +176,7 @@ def marcarrevisado(request):
     # some error occured
     return JsonResponse({"error": ""}, status=400)
     
-    
+
 @login_required
 def gregorio(request):
     if request.user.is_superuser:
@@ -210,12 +212,61 @@ def gregorio(request):
                     tabla_dict=pd.DataFrame([{'userid':user.id,'user':user.username,'universo':user.universo,'artiasignado':numeroarticuloasignado,'artitraducido':numeroarticulotraducido,'fechaasignado':ultimoarticuloasignado.fechaasignado,'fechatraducido':ultimoarticulotraducido.fechatraducido,'diaspasados':diaspasados,'estado':estado}])
                 tabla=pd.concat([tabla,tabla_dict],ignore_index = True, axis = 0)
             else:
+                
                 usuario_saa.append(user)
         
-        print(tabla)
-        print(usuario_saa)
         return render(
             request,
             'gregorio.html',
             context={'resumenusuarios':tabla, 'usuarios_saa':usuario_saa},
         )
+
+
+
+@require_http_methods(["GET", "POST"])
+def perfil(request):
+    # request should be ajax and method should be POST.
+    if request.method == "POST":
+        userid=request.POST.get("id",None)
+        user=Usuario.objects.filter(id=userid)
+        print(user)
+        ser_user = serializers.serialize('json', user)
+        print(ser_user) 
+        
+        articulos_asignados=Articulos.objects.filter(traductor=userid).order_by('-fechaasignado')
+        ser_articulos = serializers.serialize('json', articulos_asignados)
+        print(articulos_asignados)
+        print(ser_articulos)
+        return JsonResponse({"usuario": ser_user, "articulos":ser_articulos}, status=200)
+        
+    if request.method == "GET":
+        userid = request.user.id
+        user=Usuario.objects.filter(id=userid)
+        print(user)
+        articulos_asignados=Articulos.objects.filter(traductor=userid).order_by('-fechaasignado')
+        
+        return render(
+            request,
+            'perfil.html',
+            context={"usuario": user, "articulos":articulos_asignados},
+        )
+        
+
+    return JsonResponse({"error": ""}, status=400)
+
+
+@login_required
+def updateuser(request):
+    if request.method == "POST":
+        username=request.POST.get("username",None)
+        notas=request.POST.get("notas",None)
+        print(notas)
+        Usuario.objects.filter(username=username).update(notas=notas)
+        return JsonResponse({"instance": "Éxito"}, status=200)
+
+    else:
+            # some form errors occured.
+        return JsonResponse({"error": ""}, status=400)
+
+    # some error occured
+    return JsonResponse({"error": ""}, status=400)

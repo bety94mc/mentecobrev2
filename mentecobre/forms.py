@@ -33,6 +33,9 @@ class UsuarioActualizarForm(forms.ModelForm):
     def clean_password(self):
         return self.initial['password']
         
-        
-    
+class UsuarioForm(forms.ModelForm):
+ 
+    class Meta:
+        model = Usuario
+        fields = ('username', 'email', 'password', 'universo', 'rango')
     
