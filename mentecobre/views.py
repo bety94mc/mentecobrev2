@@ -12,6 +12,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect, csrf_exempt
 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 
 from datetime import date
 
@@ -175,7 +176,6 @@ def marcarrevisado(request):
 
     # some error occured
     return JsonResponse({"error": ""}, status=400)
-    
 
 @login_required
 def gregorio(request):
@@ -183,6 +183,7 @@ def gregorio(request):
         lista_usuarios = Usuario.objects.exclude(is_active=False)
         hoy=date.today()
         usuario_saa=[]
+        articulosinfechaasignado=[]
         traducido=['F','Y']
         tabla=pd.DataFrame(columns=['userid','user','universo','artiasignado','artitraducido','fechaasignado','fechatraducido','diaspasados','estado'])
         for user in lista_usuarios:
@@ -192,17 +193,27 @@ def gregorio(request):
             ultimoarticulotraducido=Articulos.objects.filter(traductor=user.id,traducido__in=traducido).order_by('-fechatraducido').first()
             numeroarticuloasignado=Articulos.objects.filter(traductor=user.id).count()
             numeroarticulotraducido=Articulos.objects.filter(traductor=user.id,traducido__in=traducido).count()
+            articuloasginadosinfechas=Articulos.objects.filter(traductor=user.id,fechaasignado__isnull=True)
+            if articuloasginadosinfechas !=None:
+                for articulosinfecha in articuloasginadosinfechas:
+                    articulosinfechaasignado.append(articulosinfecha.tituloEs)
             if ultimoarticuloasignado != None:
-                diaspasados=(hoy-ultimoarticuloasignado.fechaasignado).days
+                if ultimoarticuloasignado.fechaasignado != None:
+                    diaspasados=(hoy-ultimoarticuloasignado.fechaasignado).days
+                else:
+                    diaspasados='¡Falta fecha!'
+                    
                 print(diaspasados)
-                if diaspasados < 21:
-                    estado='\U0001F970'
+                if diaspasados == '¡Falta fecha!':
+                    estado = '\U0001F926'                    
                 elif diaspasados >= 21 and diaspasados < 45:
                     estado='\U0001F917'
                 elif diaspasados >= 45 and  diaspasados < 60:
                     estado='\U0001F641'
                 elif diaspasados >=60 and  diaspasados < 70:
                     estado='\U0001F92C'
+                elif diaspasados < 21:
+                    estado='\U0001F970'
                 else:
                     estado='\U0001F480'
                 
@@ -214,11 +225,16 @@ def gregorio(request):
             else:
                 
                 usuario_saa.append(user)
-        
+                
+            print (articulosinfechaasignado)
+            # if len(articulosinfechaasignado) > 0 :
+                # messages.add_message(request, messages.INFO, 'Parece que alguien se ha olvidado de algo... No sé... En ciertos artículos...')
+                
+
         return render(
             request,
             'gregorio.html',
-            context={'resumenusuarios':tabla, 'usuarios_saa':usuario_saa},
+            context={'resumenusuarios':tabla, 'usuarios_saa':usuario_saa, 'articulosinfechaasignado':articulosinfechaasignado},
         )
 
 

@@ -1,9 +1,8 @@
 {% extends "base_template.html" %}
  {% load usergroups %}
+ {% load static %}
 {% block content %}
-
-
-
+{% include 'messages.html' %}
 
 <div id="content-wrapper" class="d-flex flex-column">
 				<center>
@@ -51,11 +50,37 @@
 								<li class="list-group-item text-center"> {{user_saa.username}} </li>
 							{% endif %}
 						{% empty %}
-							Parece que todos nuestros usuarios están trabajando. ¡Bien!
+							<p>Parece que todos nuestros usuarios están trabajando. ¡Bien!</p>
+							<p><img src="{% static 'img/tomaya.jpg' %}" width="500" alt="welldone" /></p>
 						{% endfor %}
 						</ul>
 					</div>
 				</div>
+				
+				{% if articulosinfechaasignado %}
+					<div class="modal" id="gregoriomodal" tabindex="-1" role="dialog">
+					  <div class="modal-dialog modal-dialog-centered" role="document">
+						<div class="modal-content">
+						  <div class="modal-header text-white" style="background-color:#000000 ">
+							<h5 class="modal-title">Vaya vaya...</h5>
+							<button type="button" class="close" style="color:#ffffff; opacity:1" data-dismiss="modal" aria-label="Close">
+							  <span aria-hidden="true">&times;</span>
+							</button>
+						  </div>
+						  <div class="modal-body" style="text-align:left">
+							<p>Parece que alguien se ha olvidado de algo... No sé... En ciertos artículos... ¿Cómo que no te acuerdas? ¿Me vas a hacer decirtelo?</p>
+							<p>Ay el día que yo no esté... Anda, haz el favor de mirar en <p>
+							{% for article in articulosinfechaasignado %}
+								<p style="text-align:center"><b>{{article}}</b></p>
+							{% endfor %}
+						  </div>
+						  <div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						  </div>
+						</div>
+					  </div>
+					</div>
+				{% endif %}
 				
 				<div id="perfilusuario" class="card shadow mb-4" style="width: 80%">
 

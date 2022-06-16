@@ -44,6 +44,9 @@ $(document).ready(function() {
 
 
 	});  
+	
+    $('#gregoriomodal').modal({show:true});
+
 
   });
  
