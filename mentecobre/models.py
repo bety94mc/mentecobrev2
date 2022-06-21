@@ -95,3 +95,18 @@ class Articulos(models.Model):
         return str(self.tituloEs)
     def get_absolute_url(self):
         return reverse('tituloEs', args=[str(self.id)])
+        
+class Categoria(models.Model):
+    """
+    Objeto tipo Modelo. Listado de categorías.
+    """
+    
+    catEn = models.CharField(max_length=200)
+    catEs = models.CharField(max_length=200,null=True, blank=True)
+    urlEn = models.URLField(max_length=2000,null=True, blank=True)
+    urlEs = models.URLField(max_length=2000,null=True, blank=True)
+    
+    def __str__(self):
+        return str(self.catEn)
+    def get_absolute_url(self):
+        return reverse('catEn', args=[str(self.id)])

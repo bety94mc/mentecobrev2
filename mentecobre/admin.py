@@ -3,7 +3,7 @@ from django.contrib.admin.models import LogEntry, DELETION
 from django.utils.html import escape
 from django.utils.safestring import mark_safe
 
-from .models import Glosario, Usuario, Articulos
+from .models import Glosario, Usuario, Articulos, Categoria
 from .forms import UsuarioActualizarForm, RegistroForm
 
 from import_export.admin import ImportExportModelAdmin, ExportActionMixin, ExportMixin
@@ -94,6 +94,13 @@ class GlosarioAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     search_fields = ('wordEn','wordEs')
     
     resource_class=GlosarioResource
+
+
+@admin.register(Categoria)
+class CategoriaAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    list_display =('id','catEn','catEs',)
+    search_fields = ('catEn','catEs')
+
     
 @admin.register(Articulos)
 class ArticulosAdmin(ImportExportModelAdmin, admin.ModelAdmin):

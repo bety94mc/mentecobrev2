@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
-from .models import Glosario, Articulos, Usuario
+from .models import Glosario, Articulos, Usuario, Categoria
 from django.db.models import Q
 from django.views.generic import TemplateView, ListView
 from django.http import HttpResponse
@@ -286,3 +286,9 @@ def updateuser(request):
 
     # some error occured
     return JsonResponse({"error": ""}, status=400)
+    
+
+class CategoriaListView(ListView):
+    model = Categoria
+    template_name = 'mentecobre/categoria.html'
+    context_object_name = 'categoria_list'

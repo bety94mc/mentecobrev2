@@ -1,5 +1,6 @@
 from django.urls import path, include
 from . import views
+from django.contrib.auth.decorators import login_required
 
 
 urlpatterns = [ path('', views.portada, name='portada'),
@@ -16,5 +17,7 @@ urlpatterns = [ path('', views.portada, name='portada'),
                 path('gregorio', views.gregorio, name='gregorio'),
                 path('perfil', views.perfil, name='perfil'),
                 path('updateuser', views.updateuser,name='updateuser'),
+                
+                path('categorizanator', login_required(views.CategoriaListView.as_view()),name='categorizanator')
                 
 ]

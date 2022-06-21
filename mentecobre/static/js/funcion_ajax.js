@@ -28,7 +28,9 @@ $(document).ready(function() {
 	$('#dataTable').DataTable( {
 	"searching":false
 	
-	});  
+	});
+
+	$('#dataTablecategoria').DataTable();  	
 
 	$.fn.dataTable.moment( 'D-M-YYYY' );
 	$('#gregoriotable').DataTable( {
