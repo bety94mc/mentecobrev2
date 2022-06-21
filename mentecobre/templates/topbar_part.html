@@ -22,6 +22,11 @@
 									</li>
 									{% if user.is_authenticated %}
 									<li class="nav-item">
+										<a id="categorialink" class="nav-link text-white" href={% url 'categorizanator' %}>Categorías</a>
+									</li>
+
+
+									<li class="nav-item">
 										<a id="traduccionlink" class="nav-link text-white" href={% url 'traducciones' %}>Estado Traducción</a>
 									</li>
 										{% if request.user|has_group:"Revisores" %}
@@ -32,7 +37,7 @@
 										
 										{% if user.is_superuser %}
 											<li class="nav-item">
-												<a id="revisionlink" class="nav-link text-white" href={% url 'gregorio' %}>Vigilante de la Traducción</a>
+												<a id="gregoriolink" class="nav-link text-white" href={% url 'gregorio' %}>Vigilante de la Traducción</a>
 											</li>
 										{% endif %}
 
@@ -79,7 +84,7 @@
 						{% else %}
 						
 						<li class="nav-item">
-							<a id="glosariolink" class="nav-link text-white" href={%url 'login' %}>Entrar</a>
+							<a id="loginlink" class="nav-link text-white" href={%url 'login' %}>Entrar</a>
 						</li>
 						
 						{% endif %}
