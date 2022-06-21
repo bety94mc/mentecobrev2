@@ -1,0 +1,50 @@
+{% extends "base_template.html" %}
+
+{% block content %}
+
+
+
+
+<div id="content-wrapper" class="d-flex flex-column" >
+	<div class="container-fluid">
+
+		<!-- Page Heading -->
+		<div>
+                       <center> <h1 class="text-WHITE">Categoría</h1> </center>
+
+        </div>
+		<div>
+                      <center> <p1 class="text-WHITE"> Lista de categorías.</p1> </center>
+
+        </div>
+
+	</div>
+	<div class="container-fluid">
+		{% if categoria_list %}
+		<table id="dataTablecategoria" class="table table-bordered w-50 text-center"> 				
+					<thead>
+										<tr>
+											<th scope="col">Inglés</th>
+											<th scope="col">Español</th>
+										</tr>
+										</thead>
+						<tbody>
+										{%for object in categoria_list %}
+											<tr>
+											<td><a href={{object.urlEn}} target="_blank" rel="noopener noreferrer"> {{object.catEn}} </a></td>
+											<td><a href={{object.urlEs}} target="_blank" rel="noopener noreferrer"> {{object.catEs}} </a></td>
+											
+											
+
+											</tr>
+										{%endfor%}
+						</tbody>
+		</table>
+		{% else %}
+				<p> No hay lista de categorías </p>
+		{% endif %}
+	</div>
+</div>
+{% endblock %}
+
+<script src = "/static/js/funcion_ajax.js"> </script>	
