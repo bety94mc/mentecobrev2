@@ -10,6 +10,7 @@ from django.views.decorators.http import require_http_methods
 from django.core import serializers
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect, csrf_exempt
+from django.views.decorators.clickjacking import xframe_options_exempt
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
@@ -18,7 +19,7 @@ from datetime import date
 
 import pandas as pd
 
-
+@xframe_options_exempt
 @require_http_methods(["GET", "POST"])   
 def glosario(request):
     search = request.GET.get("q", None)
@@ -38,7 +39,8 @@ def glosario(request):
         'mentecobre/glosario.html',
         context={"object_list":object_list}
     )
-
+    
+@xframe_options_exempt
 def portada(request):
     """
     Función vista para la página inicio del sitio.
