@@ -4,7 +4,7 @@
 				<div class="container-fluid">
 						<div class="container-topbar">
 						
-							<a class="navbar-brand" href="{%url 'glosario' %}"> 
+							<a class="navbar-brand" href="{%url 'portada' %}"> 
 						
                         <!--Insert the file name of your brand image below after the 'img'-->
 								<img class="img-responsive" src="/static/img/cosmerelogo.jpg" width="40" height="40">
@@ -12,6 +12,9 @@
 							
 							
 								<ul class="nav-topbar navbar-nav">
+									<li class="nav-item">
+										<a id="portadalink" class="nav-link text-white" href={%url 'portada' %}>Inicio</a>
+									</li>
 
 									<li class="nav-item">
 										<a id="glosariolink" class="nav-link text-white" href={%url 'glosario' %}>Glosario</a>
@@ -22,9 +25,8 @@
 									</li>
 									{% if user.is_authenticated %}
 									<li class="nav-item">
-										<a id="categorialink" class="nav-link text-white" href={% url 'categorizanator' %}>Categorías</a>
-									</li>
-
+-										<a id="categorialink" class="nav-link text-white" href={% url 'categorizanator' %}>CategorÃ­as</a>
+-									</li>
 
 									<li class="nav-item">
 										<a id="traduccionlink" class="nav-link text-white" href={% url 'traducciones' %}>Estado Traducción</a>
