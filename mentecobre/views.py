@@ -39,7 +39,7 @@ def glosario(request):
         'mentecobre/glosario.html',
         context={"object_list":object_list}
     )
-    
+
 @xframe_options_exempt
 def portada(request):
     """
@@ -187,14 +187,15 @@ def gregorio(request):
         usuario_saa=[]
         articulosinfechaasignado=[]
         traducido=['F','Y']
+        prioridad=[1,2,3]
         tabla=pd.DataFrame(columns=['userid','user','universo','artiasignado','artitraducido','fechaasignado','fechatraducido','diaspasados','estado'])
         for user in lista_usuarios:
             #Fecha último artículo asignado
             
             ultimoarticuloasignado=Articulos.objects.filter(traductor=user.id).order_by('-fechaasignado').first()
             ultimoarticulotraducido=Articulos.objects.filter(traductor=user.id,traducido__in=traducido).order_by('-fechatraducido').first()
-            numeroarticuloasignado=Articulos.objects.filter(traductor=user.id).count()
-            numeroarticulotraducido=Articulos.objects.filter(traductor=user.id,traducido__in=traducido).count()
+            numeroarticuloasignado=Articulos.objects.filter(traductor=user.id, prioridad__in=prioridad).count()
+            numeroarticulotraducido=Articulos.objects.filter(traductor=user.id,traducido__in=traducido, prioridad__in=prioridad).count()
             articuloasginadosinfechas=Articulos.objects.filter(traductor=user.id,fechaasignado__isnull=True)
             if articuloasginadosinfechas !=None:
                 for articulosinfecha in articuloasginadosinfechas:
