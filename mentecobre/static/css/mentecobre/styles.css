@@ -1,13 +1,13 @@
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 30px;
-  line-height: 30px; /* Vertically center the text there */
-  background-color: #f5f5f5;
+.flex-wrapper {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
+.footer {
+  margin-top: auto;
+}
 
 
 .form-inline-search{
